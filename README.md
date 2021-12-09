@@ -11,3 +11,14 @@ sudo PGPASSWORD=QNeQZg3u  psql -h fareye-qa-load-9-6.cibtmskbddcw.us-west-2.rds.
 #Jmeter Server
   ssh-add jmeter_new.pem
   ./jmeter_serv.sh 
+
+
+
+##Runsheet
+  ldr -f Runsheet_generator.java 
+  cat runsheet.csv |grep "BANKPASS"|head -50> runnew.csv 
+  cat runsheet.csv |grep "BANKFAIL"|head -50>> runnew.csv
+  cp runnew.csv ./gendata/runsheet.csv
+  ./runsheet.sh 
+  ./gen_managerData.sh
+  ./manager.sh
